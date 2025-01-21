@@ -35,6 +35,7 @@ class ElasticsearchDB(VectorStoreBase):
         else:
             self.client = Elasticsearch(
                 hosts=[f"{config.host}" if config.port is None else f"{config.host}:{config.port}"],
+                api_key=config.api_key,
                 basic_auth=(config.user, config.password) if (config.user and config.password) else None,
                 verify_certs=config.verify_certs,
             )
