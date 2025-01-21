@@ -175,6 +175,9 @@ class Memory(MemoryBase):
             for mem in existing_memories:
                 retrieved_old_memory.append({"id": mem.id, "text": mem.payload["data"]})
 
+        # remove same records
+        retrieved_old_memory = list({item["id"]: item for item in retrieved_old_memory}.values())
+
         logging.info(f"Total existing memories: {len(retrieved_old_memory)}")
 
         # mapping UUIDs with integers for handling UUID hallucinations
